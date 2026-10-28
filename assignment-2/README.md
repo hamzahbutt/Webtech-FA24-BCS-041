@@ -4,4 +4,4 @@ URL: https://outfitters.com.pk
 
 Homepage Screenshot:
 
-![Homepage](screenshot.png)
+![Homepage](Screenshot.png)
