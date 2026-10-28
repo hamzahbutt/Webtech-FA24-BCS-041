@@ -1,0 +1,349 @@
+/* ==========================================================
+   Outfitters clone - custom styles (Bootstrap does the grid)
+   ========================================================== */
+
+/* ---------- Base ---------- */
+:root {
+  --ink: #111;
+  --tint: #eceff2;   /* light grey-blue behind product photos */
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ---------- Header ---------- */
+.navbar {
+  z-index: 10;
+}
+
+/* Homepage: transparent bar floating over the slideshow */
+body.overlay .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
+
+body.overlay .navbar-toggler-icon {
+  filter: invert(1);   /* white hamburger */
+}
+
+/* Other pages: normal white bar */
+body.solid .navbar {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  font-family: Anton, Impact, sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+  color: inherit !important;
+}
+
+/* Links keep the bar's colour; the current one is slightly bolder */
+.navbar .nav-link {
+  color: inherit;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-right: 1.5rem;
+}
+
+.navbar .nav-link.active {
+  color: inherit;
+  font-weight: 600;
+}
+
+.search-box {
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  border-bottom: 1px solid currentColor;
+}
+
+.search-box input {
+  width: 110px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.search-box input::placeholder {
+  color: inherit;
+  opacity: 1;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  font-size: 0.55rem;
+  background: var(--ink);
+  color: #fff;
+}
+
+body.overlay .cart-badge {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* Phone/tablet: dark background behind the opened menu */
+@media (max-width: 991.98px) {
+  body.overlay .navbar-collapse.show {
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
+
+
+/* ---------- Hero slideshow ---------- */
+.hero .carousel-item img {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  min-height: 480px;
+  object-fit: cover;
+  background: #8a8f92;   /* grey until real photos are added */
+}
+
+/* Round dots instead of Bootstrap's default bars */
+.hero .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  margin: 0 9px;
+  border: 0;
+  border-radius: 50%;
+}
+
+/* Centered text over the hero slideshow */
+.hero-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hero-caption h1 {
+  color: white;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 400;
+  margin: 0;
+}
+
+
+/* ---------- Category tiles ---------- */
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #8d949b;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+/* ---------- Categories in focus ---------- */
+.focus-img {
+  height: 100%;
+  min-height: 320px;
+  background: #dfe3e8;
+}
+
+.focus-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.focus-tabs a {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.focus-tabs a.on {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+
+/* ---------- Denim band ---------- */
+.band {
+  width: 100%;
+  overflow: hidden;
+}
+
+.band img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Product cards ---------- */
+.img-wrap {
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: var(--tint);
+}
+
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: #f8f9fa;
+  font-size: 0.85rem;
+}
+
+.add-btn::after {
+  content: "+";
+}
+
+.add-btn:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.p-name {
+  margin: 0 0 2px;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.p-meta {
+  margin-bottom: 4px;
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+}
+
+.p-price {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Colour squares */
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+}
+
+.swatch.navy  { background: #1c2a5a; }
+.swatch.slate { background: #8b9bb0; }
+
+
+/* ---------- Women / Juniors ---------- */
+.duo {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #9aa0a6;
+}
+
+.duo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.duo span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+
+/* ---------- Newsletter ---------- */
+.nl-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.nl-input {
+  padding-left: 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: #000;
+  color: #fff;
+}
+
+.foot-logo {
+  font-family: Anton, Impact, sans-serif;
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: 1;
+}
+
+.site-footer li {
+  margin-bottom: 0.45rem;
+  font-size: 0.85rem;
+}
+
+
+/* ---------- Product page ---------- */
+.qty {
+  max-width: 150px;
+}
+
+.size-btn {
+  min-width: 48px;
+}
