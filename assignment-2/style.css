@@ -434,3 +434,29 @@ body.overlay .cart-badge {
   .field label { margin-bottom: 0; }
   .msg { grid-column: 2; }
 }
+
+/* ---------- Task 3: mini cart ---------- */
+.cart-wrap { position: relative; }
+
+.mini-cart {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: min(320px, 90vw);
+  padding: 1rem;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid #ddd;
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
