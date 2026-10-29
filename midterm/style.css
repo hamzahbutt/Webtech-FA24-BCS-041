@@ -6,6 +6,7 @@
 :root {
   --ink: #111;
   --tint: #eceff2;   /* light grey-blue behind product photos */
+  --accent: hsl(287, 70%, 45%);
 }
 
 body {
@@ -21,7 +22,7 @@ a {
 
 /* ---------- Header ---------- */
 .navbar {
-  z-index: 10;
+ z-index: 1030;
 }
 
 /* Homepage: transparent bar floating over the slideshow */
@@ -103,7 +104,7 @@ body.overlay .cart-badge {
 }
 
 /* Phone/tablet: dark background behind the opened menu */
-@media (max-width: 991.98px) {
+@media (max-width: 640.98px) {
   body.overlay .navbar-collapse.show {
     padding: 0.5rem 1rem;
     background: rgba(0, 0, 0, 0.75);
@@ -346,4 +347,116 @@ body.overlay .cart-badge {
 
 .size-btn {
   min-width: 48px;
+}
+
+/* ---------- Task 1: custom breakpoint (BP = 641px) ---------- */
+@media (min-width: 641px) {
+  .navbar-bp > .container-fluid { flex-wrap: nowrap; }
+  .navbar-bp .navbar-toggler { display: none; }
+  .navbar-bp .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    flex-grow: 1;
+    margin-left: 3rem;
+  }
+  .navbar-bp .navbar-nav { flex-direction: row; }
+}
+
+/* ---------- Task 1: mega-menu ---------- */
+/* .navbar is already positioned, so the panel anchors to it, full width, under it */
+.mega-panel {
+  display: none;
+  position: absolute;
+  top: 100%;            /* no gap, so hover is not lost */
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 1.5rem 2rem;
+  background: #fff;
+  color: var(--ink);
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  grid-template-columns: repeat(5, 1fr);   /* K = 5 */
+  gap: 2rem;
+}
+
+.mega-col h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mega-col ul { list-style: none; margin: 0; padding: 0; }
+.mega-col li { margin-bottom: 0.4rem; font-size: 0.9rem; }
+.mega-col a:hover,
+.mega-col a:focus { text-decoration: underline; }
+
+/* Desktop: open on hover OR keyboard focus anywhere inside the item */
+@media (min-width: 641px) {
+  .mega-mobile { display: none; }
+  .mega-desktop:hover .mega-panel,
+  .mega-desktop:focus-within .mega-panel { display: grid; }
+}
+
+/* Mobile: accordion inside the hamburger menu */
+@media (max-width: 640.98px) {
+  .mega-desktop { display: none; }
+  .mega-mobile details { padding: 0.35rem 0 0.35rem 1rem; }
+  .mega-mobile summary { cursor: pointer; font-weight: 600; text-transform: uppercase; }
+  .mega-mobile ul { list-style: none; padding-left: 1rem; margin: 0.4rem 0 0; }
+}
+
+/* ---------- Task 2: checkout ---------- */
+.checkout fieldset { border: 1px solid #ddd; padding: 1rem 1.25rem; margin: 0; }
+.checkout legend {
+  float: none; width: auto; padding: 0 0.5rem;
+  font-size: 1rem; font-weight: 700; color: var(--accent);
+}
+
+/* Mobile first: one column, label above input */
+.checkout-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.field { display: grid; grid-template-columns: 1fr; margin-bottom: 1rem; }
+.field label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem; }
+
+/* Hide messages until the user has interacted and the value is invalid */
+.msg { display: none; margin-top: 0.25rem; font-size: 0.78rem; color: #d00; }
+.checkout input:user-invalid,
+.checkout select:user-invalid { border-color: #d00; }
+.checkout input:user-invalid ~ .msg,
+.checkout select:user-invalid ~ .msg { display: block; }
+
+/* BP and wider: fieldsets side by side, labels in a left column */
+@media (min-width: 641px) {
+  .checkout-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .field { grid-template-columns: 7rem 1fr; column-gap: 1rem; align-items: center; }
+  .field label { margin-bottom: 0; }
+  .msg { grid-column: 2; }
+}
+
+/* ---------- Task 3: mini cart ---------- */
+.cart-wrap { position: relative; }
+
+.mini-cart {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: min(320px, 90vw);
+  padding: 1rem;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid #ddd;
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
 }
